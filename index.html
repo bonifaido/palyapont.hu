@@ -60,7 +60,18 @@
         .contact strong {
             color: #333;
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.15rem;
+        }
+        .contact-title {
+            margin: 0;
+        }
+        .contact-links {
+            margin-top: 0.9rem;
+            display: grid;
+            gap: 0.25rem;
+        }
+        .contact a {
+            color: inherit;
         }
         .logo {
             display: block;
@@ -88,11 +99,15 @@
         <p>Hamarosan további részletek a PályaPont oldalán.</p>
         
         <div class="contact">
-            <strong>Krácser-Varga Adrienn</strong>
-            <div><i>emberi erőforrás tanácsadó</i></div>
-            <div><a href="https://palyapont.hu/">palyapont.hu</a></div>
-            <div><a href="mailto:hello@palyapont.hu">hello@palyapont.hu</a></div>
-            <div><a href="https://www.facebook.com/palyapont/" target="_blank" rel="noopener noreferrer">facebook.com/palyapont</a></div>
+            <div class="contact-header">
+                <strong>Krácser-Varga Adrienn</strong>
+                <div class="contact-title"><i>emberi erőforrás tanácsadó</i></div>
+            </div>
+            <div class="contact-links">
+                <div><a href="https://palyapont.hu/">palyapont.hu</a></div>
+                <div><a href="mailto:hello@palyapont.hu">hello@palyapont.hu</a></div>
+                <div><a href="https://www.facebook.com/palyapont/" target="_blank" rel="noopener noreferrer">facebook.com/palyapont</a></div>
+            </div>
         </div>
     </div>
 </body>
