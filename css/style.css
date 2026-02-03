@@ -472,6 +472,55 @@ body.lightbox-open {
   outline-offset: 2px;
 }
 
+.pp-lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(20, 20, 20, 0.6);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.pp-lightbox__prev {
+  left: -0.5rem;
+}
+
+.pp-lightbox__next {
+  right: -0.5rem;
+}
+
+.pp-lightbox__nav:hover,
+.pp-lightbox__nav:focus-visible {
+  background: rgba(20, 20, 20, 0.82);
+  outline: 3px solid rgba(255, 255, 255, 0.55);
+  outline-offset: 2px;
+}
+
+.pp-lightbox__nav[disabled],
+.pp-lightbox__nav[aria-disabled="true"] {
+  opacity: 0.35;
+  cursor: default;
+}
+
+@media (max-width: 600px) {
+  .pp-lightbox__prev {
+    left: 0.25rem;
+  }
+
+  .pp-lightbox__next {
+    right: 0.25rem;
+  }
+}
+
 .pp-lightbox__figure {
   margin: 0;
 }

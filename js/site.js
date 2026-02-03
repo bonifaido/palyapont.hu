@@ -62,7 +62,45 @@
   let lightboxImg = null;
   let lightboxCaption = null;
   let lightboxCloseBtn = null;
+  let lightboxPrevBtn = null;
+  let lightboxNextBtn = null;
   let previousFocus = null;
+  let lightboxItems = [];
+  let lightboxIndex = 0;
+
+  const clampIndex = (value, length) => {
+    if (!length) return 0;
+    const n = value % length;
+    return n < 0 ? n + length : n;
+  };
+
+  const renderLightbox = () => {
+    if (!lightboxImg) return;
+    const item = lightboxItems[lightboxIndex];
+    if (!item) return;
+
+    lightboxImg.src = item.src;
+    lightboxImg.alt = item.altText || '';
+    if (lightboxCaption) lightboxCaption.textContent = item.altText || '';
+
+    const multi = lightboxItems.length > 1;
+    if (lightboxPrevBtn) {
+      lightboxPrevBtn.disabled = !multi;
+      lightboxPrevBtn.setAttribute('aria-disabled', (!multi).toString());
+      lightboxPrevBtn.style.display = multi ? 'flex' : 'none';
+    }
+    if (lightboxNextBtn) {
+      lightboxNextBtn.disabled = !multi;
+      lightboxNextBtn.setAttribute('aria-disabled', (!multi).toString());
+      lightboxNextBtn.style.display = multi ? 'flex' : 'none';
+    }
+  };
+
+  const stepLightbox = (delta) => {
+    if (!lightboxItems.length) return;
+    lightboxIndex = clampIndex(lightboxIndex + delta, lightboxItems.length);
+    renderLightbox();
+  };
 
   const ensureLightbox = () => {
     if (lightboxEl) return;
@@ -116,6 +154,50 @@
     const figure = document.createElement('figure');
     figure.className = 'pp-lightbox__figure';
 
+    const prevBtn = document.createElement('button');
+    prevBtn.type = 'button';
+    prevBtn.className = 'pp-lightbox__nav pp-lightbox__prev';
+    prevBtn.setAttribute('aria-label', 'Előző kép');
+    prevBtn.textContent = '‹';
+    prevBtn.style.cssText = [
+      'position:absolute',
+      'top:50%',
+      'left:-8px',
+      'transform:translateY(-50%)',
+      'width:46px',
+      'height:46px',
+      'border-radius:999px',
+      'border:1px solid rgba(255,255,255,.22)',
+      'background:rgba(20,20,20,.6)',
+      'color:#fff',
+      'font-size:34px',
+      'line-height:1',
+      'cursor:pointer',
+      'display:none'
+    ].join(';');
+
+    const nextBtn = document.createElement('button');
+    nextBtn.type = 'button';
+    nextBtn.className = 'pp-lightbox__nav pp-lightbox__next';
+    nextBtn.setAttribute('aria-label', 'Következő kép');
+    nextBtn.textContent = '›';
+    nextBtn.style.cssText = [
+      'position:absolute',
+      'top:50%',
+      'right:-8px',
+      'transform:translateY(-50%)',
+      'width:46px',
+      'height:46px',
+      'border-radius:999px',
+      'border:1px solid rgba(255,255,255,.22)',
+      'background:rgba(20,20,20,.6)',
+      'color:#fff',
+      'font-size:34px',
+      'line-height:1',
+      'cursor:pointer',
+      'display:none'
+    ].join(';');
+
     const img = document.createElement('img');
     img.className = 'pp-lightbox__img';
     img.alt = '';
@@ -149,6 +231,8 @@
       document.documentElement.style.overflow = '';
       if (previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
       previousFocus = null;
+      lightboxItems = [];
+      lightboxIndex = 0;
       if (lightboxImg) lightboxImg.removeAttribute('src');
       if (lightboxCaption) lightboxCaption.textContent = '';
     };
@@ -162,25 +246,63 @@
       if (e.target === overlay) close();
     });
 
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (prevBtn.disabled) return;
+      stepLightbox(-1);
+    });
+
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (nextBtn.disabled) return;
+      stepLightbox(1);
+    });
+
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightboxEl && !lightboxEl.hidden) close();
+      if (!lightboxEl || lightboxEl.hidden) return;
+      if (e.key === 'Escape') {
+        close();
+        return;
+      }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        stepLightbox(-1);
+        return;
+      }
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        stepLightbox(1);
+      }
     });
 
     lightboxEl = overlay;
     lightboxImg = img;
     lightboxCaption = caption;
     lightboxCloseBtn = closeBtn;
+    lightboxPrevBtn = prevBtn;
+    lightboxNextBtn = nextBtn;
     lightboxEl.__close = close;
+
+    // Insert nav buttons last so they're above the image.
+    content.appendChild(prevBtn);
+    content.appendChild(nextBtn);
   };
 
-  const openLightbox = ({ src, altText }) => {
+  const openLightbox = ({ items, index, src, altText }) => {
     ensureLightbox();
     if (!lightboxEl || !lightboxImg) return;
 
     previousFocus = document.activeElement;
-    lightboxImg.src = src;
-    lightboxImg.alt = altText || '';
-    if (lightboxCaption) lightboxCaption.textContent = altText || '';
+    if (Array.isArray(items) && items.length) {
+      lightboxItems = items;
+      lightboxIndex = clampIndex(typeof index === 'number' ? index : 0, lightboxItems.length);
+    } else {
+      lightboxItems = [{ src, altText }];
+      lightboxIndex = 0;
+    }
+    renderLightbox();
 
     document.body.classList.add('lightbox-open');
     document.documentElement.style.overflow = 'hidden';
@@ -196,13 +318,17 @@
     if (e.button !== 0) return;
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
-    const href = link.getAttribute('href');
-    if (!href) return;
-
-    const img = link.querySelector('img');
-    const altText = (img && img.getAttribute('alt')) || link.getAttribute('aria-label') || '';
-
     e.preventDefault();
-    openLightbox({ src: link.href, altText });
+
+    const gallery = link.closest('.gallery');
+    const galleryLinks = gallery ? Array.from(gallery.querySelectorAll('a[href]')) : [link];
+    const items = galleryLinks.map((a) => {
+      const img = a.querySelector('img');
+      const altText = (img && img.getAttribute('alt')) || a.getAttribute('aria-label') || '';
+      return { src: a.href, altText };
+    });
+    const index = Math.max(0, galleryLinks.indexOf(link));
+
+    openLightbox({ items, index });
   });
 })();
