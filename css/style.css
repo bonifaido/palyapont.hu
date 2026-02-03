@@ -430,6 +430,70 @@ ul ul {
   }
 }
 
+body.lightbox-open {
+  overflow: hidden;
+}
+
+.pp-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(0, 0, 0, 0.86);
+}
+
+.pp-lightbox__content {
+  position: relative;
+  width: min(1100px, 96vw);
+}
+
+.pp-lightbox__close {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(20, 20, 20, 0.6);
+  color: #fff;
+  font-size: 1.9rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.pp-lightbox__close:hover,
+.pp-lightbox__close:focus-visible {
+  background: rgba(20, 20, 20, 0.82);
+  outline: 3px solid rgba(255, 255, 255, 0.55);
+  outline-offset: 2px;
+}
+
+.pp-lightbox__figure {
+  margin: 0;
+}
+
+.pp-lightbox__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 84vh;
+  object-fit: contain;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.pp-lightbox__caption {
+  margin-top: 0.75rem;
+  color: rgba(255, 255, 255, 0.92);
+  text-align: center;
+  font-size: 0.95rem;
+}
+
 @media (max-width: 900px) {
   .hero-grid {
     grid-template-columns: 1fr;
