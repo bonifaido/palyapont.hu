@@ -13,7 +13,7 @@
   --shadow-soft: 0 1px 6px rgba(0, 0, 0, 0.06);
   --brand: #2b6cb0;
   --brand-hover: #1e4e8c;
-  --nav-h: 68px;
+  --nav-h: 84px;
 }
 
 html {
@@ -107,8 +107,8 @@ a:focus-visible {
 }
 
 .brand-logo {
-  width: 44px;
-  height: 44px;
+  width: 56px;
+  height: 56px;
   border-radius: 12px;
   object-fit: contain;
   background: #fff;
