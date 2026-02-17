@@ -119,14 +119,13 @@ a:focus-visible {
   flex-direction: column;
   line-height: 1.1;
 }
-
 .brand-title strong {
   font-size: 1rem;
   color: var(--text);
 }
 
 .brand-title span {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--muted);
 }
 
@@ -345,10 +344,24 @@ ul ul {
   box-shadow: var(--shadow-soft);
 }
 
+.event-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
 .event-image {
   display: block;
-  width: 100%;
+  width: min(420px, 40%);
+  max-width: 420px;
   height: auto;
+  flex: 0 0 auto;
+  object-fit: cover;
 }
 
 .event-body {
@@ -616,5 +629,19 @@ body.lightbox-open {
   .contact {
     margin-top: 1.5rem;
     padding-top: 1.25rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .event-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .event-image {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    flex: 0 0 auto;
   }
 }
