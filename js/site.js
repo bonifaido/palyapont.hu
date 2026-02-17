@@ -81,7 +81,14 @@
 
     lightboxImg.src = item.src;
     lightboxImg.alt = item.altText || '';
-    if (lightboxCaption) lightboxCaption.textContent = item.altText || '';
+    if (lightboxCaption) {
+      let captionText = item.altText || '';
+      if (lightboxItems.length > 1) {
+        const counter = `${lightboxIndex + 1}/${lightboxItems.length}`;
+        captionText = captionText ? `${captionText} — ${counter}` : counter;
+      }
+      lightboxCaption.textContent = captionText;
+    }
 
     const multi = lightboxItems.length > 1;
     if (lightboxPrevBtn) {
