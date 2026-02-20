@@ -301,8 +301,8 @@ ul ul {
 }
 
 .contact {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
+  margin-top: 1rem;
+  padding-top: 0.8rem;
   border-top: 1px solid #ddd;
   color: var(--muted);
   font-size: 1rem;
