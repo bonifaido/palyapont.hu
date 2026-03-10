@@ -205,7 +205,30 @@ a:focus-visible {
 }
 
 .hero-grid--balanced .hero-media img {
+  max-width: 300px;
+}
+
+.tanacsadas-flow::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.tanacsadas-figure {
+  float: right;
+  width: 42%;
   max-width: 360px;
+  min-width: 220px;
+  margin: 0.25rem 0 1rem 1.5rem;
+}
+
+.tanacsadas-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
 }
 
 .hero-media {
@@ -280,6 +303,14 @@ p {
 }
 
 ul {
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: left;
+  list-style-position: inside;
+}
+
+ol {
   color: var(--muted);
   font-size: 1.1rem;
   line-height: 1.8;
@@ -499,6 +530,13 @@ ul ul {
   .hero-grid--media,
   .hero-grid--balanced {
     grid-template-columns: 1fr;
+  }
+
+  .tanacsadas-figure {
+    float: none;
+    width: 100%;
+    max-width: 420px;
+    margin: 1rem auto 1.25rem auto;
   }
 
   .bemutatkozas-szoveg,
