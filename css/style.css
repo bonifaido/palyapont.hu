@@ -212,6 +212,11 @@ a:focus-visible {
   align-items: start;
 }
 
+.contact-layout .hero-media img {
+  border: 0;
+  box-shadow: none;
+}
+
 .intro-logo-layout {
   align-items: start;
 }
@@ -456,6 +461,10 @@ ul ul {
   align-items: start;
   margin-bottom: 0;
   gap: 1.25rem;
+}
+
+.home-intro .bemutatkozas-collage {
+  max-width: 378px;
 }
 
 .bemutatkozas-szoveg {
