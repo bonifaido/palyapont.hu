@@ -469,6 +469,10 @@ ul ul {
   margin-top: 0.35rem;
 }
 
+.home-intro-copy p:first-of-type + p {
+  margin-top: 1rem;
+}
+
 .home-intro-copy p:last-child {
   margin-bottom: 0;
 }
