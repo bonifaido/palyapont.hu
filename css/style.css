@@ -208,6 +208,10 @@ a:focus-visible {
   max-width: 300px;
 }
 
+.contact-layout {
+  align-items: start;
+}
+
 .tanacsadas-flow::after {
   content: "";
   display: table;
@@ -346,7 +350,7 @@ ul ul {
 }
 
 .contact {
-  margin-top: 1rem;
+  margin-top: 0;
   padding-top: 0;
   border-top: 0;
   color: var(--muted);
