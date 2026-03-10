@@ -418,12 +418,16 @@ ul ul {
   min-width: 280px;
 }
 
+.bemutatkozas-szoveg p {
+  text-align: justify;
+}
+
 .bemutatkozas-collage {
   display: block;
   flex: 1 1 360px;
   min-width: 280px;
   width: 100%;
-  max-width: 480px;
+  max-width: 420px;
   height: auto;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
