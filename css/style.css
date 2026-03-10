@@ -250,6 +250,12 @@ a:focus-visible {
   clear: both;
 }
 
+.tanacsadas-flow ul {
+  margin-top: 0.05rem;
+  margin-left: 0;
+  padding-left: 1rem;
+}
+
 .tanacsadas-figure {
   float: right;
   width: 42%;
