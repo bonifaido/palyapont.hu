@@ -346,7 +346,7 @@ a:focus-visible {
 }
 
 h1 {
-  color: var(--text);
+  color: var(--brand-hover);
   font-size: 2.5rem;
   margin: 0 0 1rem 0;
 }
