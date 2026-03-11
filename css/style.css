@@ -486,7 +486,7 @@ ul ul {
 }
 
 .home-intro .bemutatkozas-collage {
-  max-width: 378px;
+  max-width: 340px;
 }
 
 .bemutatkozas-szoveg {
@@ -515,25 +515,38 @@ ul ul {
 }
 
 .szolgaltatasok-block {
-  margin-top: 1.2rem;
+  margin-top: 1.6rem;
 }
 
-.home-intro-copy .szolgaltatasok-block h2 {
+.szolgaltatasok-block h2 {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem;
 }
 
-.home-intro-copy .szolgaltatasok-block h3 {
-  margin-top: 1.1rem;
-  margin-bottom: 0.55rem;
+.szolgaltatasok-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.2rem;
 }
 
-.home-intro-copy .szolgaltatasok-block p {
+.szolgaltatasok-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1rem 0.9rem 1rem;
+  background: #fff;
+}
+
+.szolgaltatasok-item h3 {
+  margin-top: 0;
+  margin-bottom: 0.6rem;
+}
+
+.szolgaltatasok-item p {
   margin: 0;
 }
 
-.home-intro-copy .szolgaltatasok-block p + p {
-  margin-top: 0.7rem;
+.szolgaltatasok-item p + p {
+  margin-top: 0.65rem;
 }
 
 .home-intro + p {
@@ -655,6 +668,10 @@ ul ul {
   .hero-grid,
   .hero-grid--media,
   .hero-grid--balanced {
+    grid-template-columns: 1fr;
+  }
+
+  .szolgaltatasok-grid {
     grid-template-columns: 1fr;
   }
 
