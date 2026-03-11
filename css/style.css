@@ -261,6 +261,28 @@ a:focus-visible {
   padding-left: 1rem;
 }
 
+.section-anchor-link {
+  margin: -0.2rem 0 0.65rem 0;
+}
+
+.section-anchor-link a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(43, 108, 176, 0.24);
+  background: rgba(43, 108, 176, 0.08);
+  text-decoration: none;
+  font-size: 0.92rem;
+  line-height: 1.2;
+}
+
+.section-anchor-link a:hover,
+.section-anchor-link a:focus-visible {
+  background: rgba(43, 108, 176, 0.14);
+  border-color: rgba(30, 78, 140, 0.4);
+}
+
 .tanacsadas-figure {
   float: right;
   width: 42%;
@@ -490,6 +512,28 @@ ul ul {
 
 .home-intro-copy p:last-child {
   margin-bottom: 0;
+}
+
+.szolgaltatasok-block {
+  margin-top: 1.2rem;
+}
+
+.home-intro-copy .szolgaltatasok-block h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.home-intro-copy .szolgaltatasok-block h3 {
+  margin-top: 1.1rem;
+  margin-bottom: 0.55rem;
+}
+
+.home-intro-copy .szolgaltatasok-block p {
+  margin: 0;
+}
+
+.home-intro-copy .szolgaltatasok-block p + p {
+  margin-top: 0.7rem;
 }
 
 .home-intro + p {
