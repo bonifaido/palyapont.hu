@@ -727,12 +727,26 @@ body.lightbox-open {
   align-items: center;
   justify-content: center;
   padding: 1.25rem;
-  background: rgba(0, 0, 0, 0.86);
+  background: rgba(245, 244, 236, 0.88);
 }
 
 .pp-lightbox__content {
   position: relative;
   width: min(1100px, 96vw);
+}
+
+.pp-lightbox__content--promo {
+  width: auto;
+  max-width: 92vw;
+}
+
+.pp-lightbox__content--promo .pp-lightbox__figure {
+  display: inline-block;
+}
+
+.pp-lightbox__content--promo .pp-lightbox__img {
+  width: auto;
+  max-width: 92vw;
 }
 
 .pp-lightbox__close {

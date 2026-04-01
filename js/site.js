@@ -59,6 +59,7 @@
   // Simple lightbox for the office gallery.
   const LIGHTBOX_ID = 'pp-lightbox';
   let lightboxEl = null;
+  let lightboxContent = null;
   let lightboxImg = null;
   let lightboxCaption = null;
   let lightboxCloseBtn = null;
@@ -128,7 +129,7 @@
       'align-items:center',
       'justify-content:center',
       'padding:20px',
-      'background:rgba(0,0,0,.86)'
+      'background:rgba(245,244,236,.88)'
     ].join(';');
     // Inline `display:flex` would override the default `[hidden]{display:none}`.
     // We toggle display manually on open/close.
@@ -285,6 +286,7 @@
     });
 
     lightboxEl = overlay;
+    lightboxContent = content;
     lightboxImg = img;
     lightboxCaption = caption;
     lightboxCloseBtn = closeBtn;
@@ -297,9 +299,27 @@
     content.appendChild(nextBtn);
   };
 
-  const openLightbox = ({ items, index, src, altText }) => {
+  const openLightbox = ({ items, index, src, altText, contentClass }) => {
     ensureLightbox();
     if (!lightboxEl || !lightboxImg) return;
+
+    if (lightboxContent) {
+      lightboxContent.className = 'pp-lightbox__content';
+      lightboxContent.style.width = 'min(1100px,96vw)';
+      lightboxContent.style.maxWidth = '';
+      if (contentClass) lightboxContent.classList.add(contentClass);
+      if (contentClass === 'pp-lightbox__content--promo') {
+        lightboxContent.style.width = 'auto';
+        lightboxContent.style.maxWidth = '92vw';
+      }
+    }
+
+    lightboxImg.style.width = '100%';
+    lightboxImg.style.maxWidth = '';
+    if (contentClass === 'pp-lightbox__content--promo') {
+      lightboxImg.style.width = 'auto';
+      lightboxImg.style.maxWidth = '92vw';
+    }
 
     previousFocus = document.activeElement;
     if (Array.isArray(items) && items.length) {
@@ -317,6 +337,16 @@
     lightboxEl.style.display = 'flex';
     if (lightboxCloseBtn) lightboxCloseBtn.focus();
   };
+
+  const currentPage = ((window.location.pathname || '').split('/').pop() || 'index.html').toLowerCase();
+  if (currentPage === 'index.html') {
+    // Temporary campaign popup on homepage open.
+    openLightbox({
+      src: 'img/kedvezmeny.jpeg',
+      altText: 'Áprilisi kedvezmény - 20% kedvezmény egyéni tanácsadásra',
+      contentClass: 'pp-lightbox__content--promo'
+    });
+  }
 
   document.addEventListener('click', (e) => {
     const link = e.target && e.target.closest ? e.target.closest('.gallery a[href]') : null;
