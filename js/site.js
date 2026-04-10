@@ -338,16 +338,6 @@
     if (lightboxCloseBtn) lightboxCloseBtn.focus();
   };
 
-  const currentPage = ((window.location.pathname || '').split('/').pop() || 'index.html').toLowerCase();
-  if (currentPage === 'index.html') {
-    // Temporary campaign popup on homepage open.
-    openLightbox({
-      src: 'img/kedvezmeny.jpeg',
-      altText: 'Áprilisi kedvezmény - 20% kedvezmény egyéni tanácsadásra',
-      contentClass: 'pp-lightbox__content--promo'
-    });
-  }
-
   document.addEventListener('click', (e) => {
     const link = e.target && e.target.closest ? e.target.closest('.gallery a[href]') : null;
     if (!link) return;
