@@ -584,7 +584,7 @@ ul ul {
   object-fit: contain;
 }
 
-.home-services {
+.media-panel {
   width: 100%;
   margin: 0;
   padding: 0.9rem 1.2rem;
@@ -594,25 +594,13 @@ ul ul {
   text-align: center;
 }
 
-.home-services h2 {
-  margin: 0 0 0.5rem;
-  color: #0d4f9e;
-  font-size: 1.3rem;
-  line-height: 1.25;
-  text-align: center;
+/* In a text flow the panel needs its own breathing room; inside .home-intro
+   the flex `gap` already provides it. */
+.tanacsadas-flow .media-panel {
+  margin-top: 2rem;
 }
 
-.home-services p {
-  margin: 0;
-  color: #0d4f9e;
-  font-size: 0.88rem;
-  line-height: 1.5;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  text-align: center;
-}
-
-.home-services img {
+.media-panel img {
   display: block;
   width: 100%;
   height: auto;
@@ -831,7 +819,7 @@ ul ul {
     height: 220px;
   }
 
-  .home-services {
+  .media-panel {
     max-width: 92%;
   }
 
