@@ -596,27 +596,6 @@ ul ul {
   line-height: 1.8;
 }
 
-.video-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  margin: 2rem 0;
-}
-
-.video-section h2 {
-  margin: 0;
-}
-
-.intro-video {
-  display: block;
-  width: 100%;
-  max-width: 360px;
-  height: auto;
-  border-radius: 8px;
-  background: #111;
-}
-
 .home-portrait {
   display: block;
   flex: 0 0 260px;
@@ -639,6 +618,16 @@ ul ul {
    the flex `gap` already provides it. */
 .tanacsadas-flow .media-panel {
   margin-top: 2rem;
+}
+
+.tanacsadas-folyamat {
+  margin: 2rem 0;
+}
+
+.tanacsadas-folyamat img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .media-panel img {
@@ -785,6 +774,60 @@ ul ul {
   width: 100%;
   height: min(420px, 70vh);
   border: 0;
+}
+
+.palyaterkep-video {
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 16 / 9;
+  margin: 2rem auto;
+  background: #111;
+}
+
+.palyaterkep-video iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.palyaterkep-award-image {
+  max-width: 800px;
+  margin: 1.5rem auto 0;
+}
+
+.palyaterkep-award-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.palyaterkep-link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.palyaterkep-cta {
+  text-align: center;
+}
+
+.palyaterkep-link:link,
+.palyaterkep-link:visited {
+  color: #fff;
+}
+
+.palyaterkep-link:hover,
+.palyaterkep-link:focus-visible {
+  background: var(--brand-hover);
+  color: #fff;
 }
 
 .gallery {
