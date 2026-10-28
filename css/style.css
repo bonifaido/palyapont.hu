@@ -803,6 +803,18 @@ ul ul {
   border-radius: 8px;
 }
 
+.palyaterkep-announcement {
+  margin-top: 2rem;
+  padding: 0.75rem 1.25rem;
+  border-left: 4px solid var(--brand);
+  border-radius: 8px;
+  background: #eef5fb;
+}
+
+.palyaterkep-announcement p {
+  margin: 0.5rem 0;
+}
+
 .palyaterkep-link {
   display: inline-flex;
   align-items: center;
